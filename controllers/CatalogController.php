@@ -1,35 +1,49 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: dima3
- * Date: 19.04.2018
- * Time: 14:17
+ * Контроллер CatalogController
+ * Каталог товаров
  */
-include_once ROOT.'/models/Category.php';
-include_once ROOT.'/models/Product.php';
+
 class CatalogController
 {
+
+    /**
+     * Action для страницы "Каталог товаров"
+     */
     public function actionIndex()
     {
-        $categories = array();
+        // Список категорий для левого меню
         $categories = Category::getCategoriesList();
 
-        $latestProducts = array();
-        $latestProducts = Product::getLatestProducts(8);
+        // Список последних товаров
+        $latestProducts = Product::getLatestProducts(12);
 
-        require_once (ROOT.'/views/catalog/index.php');
+        // Подключаем вид
+        require_once(ROOT . '/views/catalog/index.php');
         return true;
     }
 
-    public function actionCategory($categoryId)
+    /**
+     * Action для страницы "Категория товаров"
+     */
+    public function actionCategory($categoryId, $page = 1)
     {
-        $categories = array();
+        // Список категорий для левого меню
         $categories = Category::getCategoriesList();
 
-        $categoryProducts = array();
-        $categoryProducts = Product::getProductsListByCategory($categoryId);
+        // Список товаров в категории
+        $categoryProducts = Product::getProductsListByCategory($categoryId, $page);
 
-        require_once (ROOT.'/views/catalog/category.php');
+        // Общее количетсво товаров (необходимо для постраничной навигации)
+        $total = Product::getTotalProductsInCategory($categoryId);
+
+        // Создаем объект Pagination - постраничная навигация
+        $pagination = new Pagination($total, $page, Product::SHOW_BY_DEFAULT, 'page-');
+
+        // Подключаем вид
+        require_once(ROOT . '/views/catalog/category.php');
         return true;
     }
+
 }

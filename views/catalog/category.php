@@ -36,6 +36,8 @@
                                             <h2>$<?php echo $product['price'];?></h2>
                                             <p>
                                                 <a href="/product/<?php echo $product['id'];?>">
+                                                    ID:<?php echo $product['id'];?>,
+
                                                     <?php echo $product['name'];?>
                                                 </a>
                                             </p>
@@ -52,6 +54,8 @@
                                 </div>
                             </div>
                         <?php endforeach;?>
+                        <!-- Pagination -->
+                        <?=$pagination->get();?>
 
                     </div><!--features_items-->
 

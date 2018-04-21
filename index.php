@@ -9,8 +9,8 @@ error_reporting(E_ALL);
  * connecting Router
  */
 define('ROOT', dirname(__FILE__));
-require_once (ROOT.'/components/Router.php');
-include ROOT.'/components/Db.php';
+require_once (ROOT.'/components/Autoload.php');
+
 
 $rout = new Router;
 

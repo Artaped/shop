@@ -5,8 +5,7 @@
  * Date: 17.04.2018
  * Time: 11:03
  */
-include_once ROOT.'/models/Category.php';
-include_once ROOT.'/models/Product.php';
+
 
 class ProductController
 {
