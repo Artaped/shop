@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Товар</title>
+    <title>Главная</title>
     <link href="/template/css/bootstrap.min.css" rel="stylesheet">
     <link href="/template/css/font-awesome.min.css" rel="stylesheet">
     <link href="/template/css/prettyPhoto.css" rel="stylesheet">
@@ -13,9 +13,10 @@
     <link href="/template/css/animate.css" rel="stylesheet">
     <link href="/template/css/main.css" rel="stylesheet">
     <link href="/template/css/responsive.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
-    <script src="/template/js/html5shiv.js"></script>
-    <script src="/template/js/respond.min.js"></script>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="/template/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/template/images/ico/apple-touch-icon-144-precomposed.png">
@@ -54,15 +55,23 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="index.html"><img src="/template/images/home/logo.png" alt="" /></a>
+                        <a href="/"><img src="/template/images/home/logo.png" alt="" /></a>
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Аккаунт</a></li>
-                            <li><a href="#"><i class="fa fa-lock"></i> Вход</a></li>
+                            <li><a href="/cart">
+                                    <i class="fa fa-shopping-cart"></i> Корзина
+                                    (<span id="cart-count"><?php echo Cart::countItems();?></span>)
+                                </a>
+                            </li>
+                            <?php if (User::isGuest()): ?>
+                                <li><a href="/user/login/"><i class="fa fa-lock"></i> Вход</a></li>
+                            <?php else: ?>
+                                <li><a href="/cabinet/"><i class="fa fa-user"></i> Аккаунт</a></li>
+                                <li><a href="/user/logout/"><i class="fa fa-unlock"></i> Выход</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -84,7 +93,7 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="/" class="active">Главная</a></li>
+                            <li><a href="/">Главная</a></li>
                             <li class="dropdown"><a href="#">Магазин<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="/catalog/">Каталог товаров</a></li>
