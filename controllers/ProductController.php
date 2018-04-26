@@ -1,21 +1,27 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: dima3
- * Date: 17.04.2018
- * Time: 11:03
+ * Контроллер ProductController
+ * Товар
  */
-
-
 class ProductController
 {
+
+    /**
+     * Action для страницы просмотра товара
+     * @param integer $productId <p>id товара</p>
+     */
     public function actionView($productId)
     {
-        $categories = array();
+        // Список категорий для левого меню
         $categories = Category::getCategoriesList();
 
+        // Получаем инфомрацию о товаре
         $product = Product::getProductById($productId);
-        require_once (ROOT.'/views/product/view.php');
+
+        // Подключаем вид
+        require_once(ROOT . '/views/product/view.php');
         return true;
     }
+
 }

@@ -4,7 +4,6 @@
  * Контроллер CatalogController
  * Каталог товаров
  */
-
 class CatalogController
 {
 
