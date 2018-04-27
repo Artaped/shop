@@ -36,7 +36,7 @@ return array(
     'admin/order/view/([0-9]+)' => 'adminOrder/view/$1',
     'admin/order' => 'adminOrder/index',
     // Управление пользователями:
-    'admin/user/create' => 'adminCategory/create',
+    'admin/user/create' => 'adminUser/create',
     'admin/user/update/([0-9]+)' => 'adminUser/update/$1',
     'admin/user/delete/([0-9]+)' => 'adminUser/delete/$1',
     'admin/user' => 'adminUser/index',

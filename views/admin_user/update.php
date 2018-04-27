@@ -27,12 +27,12 @@
                         <input type="text" name="name" placeholder="" value="<?php echo $user['name']; ?>">
 
                         <p>Порядковый номер</p>
-                        <input type="text" name="sort_order" placeholder="" value="<?php echo $user['email']; ?>">
+                        <input type="text" name="email" placeholder="" value="<?php echo $user['email']; ?>">
 
                         <p>Статус</p>
-                        <select name="status">
-                            <option value="1" <?php if ($user['role'] == 'admin') echo ' selected="selected"'; ?>>Отображается</option>
-                            <option value="0" <?php if ($user['role'] == 0) echo ' selected="selected"'; ?>>Скрыта</option>
+                        <select name="role">
+                            <option value="admin" <?php if ($user['role'] == 'admin') echo ' selected="selected"'; ?>>Админ</option>
+                            <option value="" <?php if ($user['role'] == '') echo ' selected="selected"'; ?>>Пользователь</option>
                         </select>
 
                         <br><br>

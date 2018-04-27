@@ -247,5 +247,37 @@ class User
         }
         return $userList;
     }
+    public static function updateUserAdmin($id, $name, $role, $email)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = "UPDATE user 
+            SET name = :name, email = :email , role = :role
+            WHERE id = :id";
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':name', $name, PDO::PARAM_STR);
+        $result->bindParam(':role', $role, PDO::PARAM_STR);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
+
+        return $result->execute();
+    }
+    public static function deleteUserById($id)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'DELETE FROM user WHERE id = :id';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        return $result->execute();
+    }
 
 }
